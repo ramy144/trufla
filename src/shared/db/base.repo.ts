@@ -1,6 +1,12 @@
-import { CallbackError, Document, FilterQuery, Model, Query, QueryOptions } from 'mongoose';
+import {
+  CallbackError,
+  Document,
+  FilterQuery,
+  Model,
+  QueryOptions,
+} from 'mongoose';
 
-export class BaseRepositry<T extends Document> {
+export class BaseRepository<T extends Document> {
   constructor(protected readonly _model: Model<T>) {}
 
   get model() {
@@ -60,27 +66,27 @@ export class BaseRepositry<T extends Document> {
   }
 
   public async findPaginated(
-    query:FilterQuery<T>,
-    page:number,
-    limit:number,
-    sortQuery :FilterQuery<T>= {}
-  ){
+    query: FilterQuery<T>,
+    page: number,
+    limit: number,
+    sortQuery: FilterQuery<T> = {},
+  ) {
     const users = await this.model
-    .find(query)
-    .sort(sortQuery)
-    .limit(limit)
-    .skip((page - 1) * limit);
+      .find(query)
+      .sort(sortQuery)
+      .limit(limit)
+      .skip((page - 1) * limit);
 
-  const totalCount = await this.model.count(query);
+    const totalCount = await this.model.count(query);
 
-  const pageCount = Math.ceil(totalCount / limit);
+    const pageCount = Math.ceil(totalCount / limit);
 
-  return {
-    data: users,
-    totalCount,
-    pageCount,
-    page,
-    limit,
-  };
+    return {
+      data: users,
+      totalCount,
+      pageCount,
+      page,
+      limit,
+    };
   }
 }
