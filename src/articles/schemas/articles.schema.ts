@@ -1,35 +1,37 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
-import {ModelName} from '../../shared/constants/common-constants'
-import {Types} from 'mongoose'
+import { Document, Types } from 'mongoose';
+import { ModelName } from '../../shared/constants/common-constants';
+
 export type ArticleModel = Article & Document;
 
 @Schema({
   timestamps: true,
 })
 export class Article {
-
   @Prop({
     required: true,
-    type:String,
-    lowercase:true
+    type: String,
+    lowercase: true,
   })
   title: string;
 
   @Prop({
     required: true,
-    type:String
+    type: String,
   })
   body: string;
 
   @Prop({
     required: true,
     type: Types.ObjectId,
-    ref: ModelName.USER_MODEL_NAME
+    ref: ModelName.USER_MODEL_NAME,
   })
   author: Types.ObjectId;
 }
 
-export const ArticlesSchema = SchemaFactory.createForClass(Article).set('toJSON', {
-  transform: (doc, { __v, ...rest }) => rest,
-})
+export const ArticlesSchema = SchemaFactory.createForClass(Article).set(
+  'toJSON',
+  {
+    transform: (doc, { __v, ...rest }) => rest,
+  },
+);

@@ -1,4 +1,13 @@
-import { Body, Controller, Get,Query, Param, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { IRequestWithJwtData } from 'src/auth/interfaces/jwt.interface';
@@ -19,7 +28,6 @@ export class ArticlesController {
     @Body() createArticleBody: CreateArticleBodyDto,
     @Req() request: IRequestWithJwtData,
   ): Promise<ArticleModel> {
-
     const createdArticle = await this.articlesService.createArticles(
       createArticleBody,
       request.user,
@@ -28,16 +36,14 @@ export class ArticlesController {
     return createdArticle;
   }
 
-  @Get("/:articleId")
-  async findUserById(
-      @Param("articleId") articleId: string,
-  ) {
-      return await this.articlesService.findArticleById(articleId)
+  @Get('/:articleId')
+  async findUserById(@Param('articleId') articleId: string) {
+    return await this.articlesService.findArticleById(articleId);
   }
   @Get()
   async findAllUsers(@Query() findAllDto: FindAllArticlesDto): Promise<any> {
     const paginatedResponse = await this.articlesService.findUsersPaginated(
-        findAllDto,
+      findAllDto,
     );
 
     return paginatedResponse;
