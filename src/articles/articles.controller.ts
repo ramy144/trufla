@@ -40,6 +40,7 @@ export class ArticlesController {
   async findUserById(@Param('articleId') articleId: string) {
     return await this.articlesService.findArticleById(articleId);
   }
+  
   @Get()
   async findAllUsers(@Query() findAllDto: FindAllArticlesDto): Promise<any> {
     const paginatedResponse = await this.articlesService.findUsersPaginated(

@@ -71,6 +71,9 @@ export class ArticleService {
       page,
       limit,
       { _id: -1 },
+      {
+        path:'author'
+      }
     );
 
     return articles;

@@ -3,6 +3,7 @@ import {
   Document,
   FilterQuery,
   Model,
+  PopulateOptions,
   QueryOptions,
 } from 'mongoose';
 
@@ -70,10 +71,12 @@ export class BaseRepository<T extends Document> {
     page: number,
     limit: number,
     sortQuery: FilterQuery<T> = {},
+    populateOtps:PopulateOptions ={path:''}
   ) {
     const users = await this.model
       .find(query)
       .sort(sortQuery)
+      .populate(populateOtps)
       .limit(limit)
       .skip((page - 1) * limit);
 
