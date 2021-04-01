@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { FilterQuery } from 'mongoose';
+import { FilterQuery, UpdateQuery } from 'mongoose';
 import { User, UserModel } from 'src/users/users.schema';
 import { CreateArticleBodyDto } from './dtos/create-article.dto';
 import { FindAllArticlesDto } from './dtos/find-all-articles.dto';
@@ -77,5 +77,9 @@ export class ArticleService {
     );
 
     return articles;
+  }
+
+ async  updateById(articleId:string,upadteBody: UpdateQuery<ArticleModel>){
+    return await this._articlesRepo.model.findByIdAndUpdate(articleId,upadteBody)
   }
 }

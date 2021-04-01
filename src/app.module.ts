@@ -7,6 +7,7 @@ import { ArticlesModule } from './articles/articles.module';
 import { AuthModule } from './auth/auth.module';
 import { CommentsModule } from './comments/comments.module';
 import configuration from './config/configuration';
+import { LikesModule } from './likes/likes.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -29,7 +30,8 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     UsersModule,
     ArticlesModule,
-    CommentsModule
+    CommentsModule,
+    LikesModule
   ],
   controllers: [AppController],
   providers: [AppService],
