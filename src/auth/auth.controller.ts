@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { SignInDto } from './dtos/signin.dtos';
+import { LogInDto } from './dtos/signin.dtos';
 import { SignUpDto } from './dtos/signup.dtos';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { IJwtData, IRequestWithJwtData } from './interfaces/jwt.interface';
@@ -15,7 +15,7 @@ export class AuthController {
   @Post('login')
   async login(
     @Req() request: IRequestWithJwtData,
-    @Body() body: SignInDto,
+    @Body() body: LogInDto,
   ): Promise<IJwtData> {
     const jwtData = request.user;
 

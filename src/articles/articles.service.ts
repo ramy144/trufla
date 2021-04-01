@@ -49,7 +49,7 @@ export class ArticleService {
     return article;
   }
 
-  async findUsersPaginated(
+  async findArticlesPaginated(
     findAllDto: FindAllArticlesDto,
   ): Promise<{
     data: ArticleModel[];
