@@ -27,6 +27,13 @@ export class Article {
     ref: ModelName.USER_MODEL_NAME,
   })
   author: Types.ObjectId;
+
+
+  @Prop({
+    default: 0,
+    type: Number,
+  })
+  likesCount: number;
 }
 
 export const ArticlesSchema = SchemaFactory.createForClass(Article).set(
