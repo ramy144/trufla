@@ -4,5 +4,8 @@
         "dtos",
         "nestjs",
         "repos"
+    ],
+    "cSpell.ignoreWords": [
+        "trufla"
     ]
 }
