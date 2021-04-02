@@ -7,4 +7,11 @@ export class FindAllArticlesDto extends PaginationDto {
   @IsOptional()
   @IsDefined()
   title?: string;
+
+  @ApiPropertyOptional({
+    enum:['THUMBS_UP']
+  })
+  @IsOptional()
+  @IsDefined()
+  sort?: string;
 }

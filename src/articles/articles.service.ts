@@ -66,11 +66,14 @@ export class ArticleService {
       query.title = { $regex: new RegExp(findAllDto.title.toLowerCase(), 'i') };
     }
 
+
+    const sortQuery = (findAllDto.sort == 'THUMBS_UP') ? {likesCount:-1} :  { _id: -1 }
+
     const articles = await this._articlesRepo.findPaginated(
       query,
       page,
       limit,
-      { _id: -1 },
+      sortQuery,
       {
         path:'author'
       }
